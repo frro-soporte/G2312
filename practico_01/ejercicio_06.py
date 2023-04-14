@@ -7,7 +7,16 @@ def numeros_al_final_basico(lista: List[Union[float, str]]) -> List[Union[float,
     """Toma una lista de enteros y strings y devuelve una lista con todos los
     elementos numéricos al final.
     """
-    pass # Completar
+    listanum = list([])
+    listastring = list([])           
+    for i in lista:
+      if str(i).isdigit(): 
+        listanum.append(i)
+      else: 
+        listastring.append(i)
+    for i in listanum:
+      listastring.append(i)
+    return listastring
 
 
 # NO MODIFICAR - INICIO
