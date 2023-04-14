@@ -29,7 +29,7 @@ assert numeros_al_final_basico([3, "a", 1, "b", 10, "j"]) == ["a", "b", "j", 3, 
 
 def numeros_al_final_comprension(lista: List[Union[float, str]]) -> List[Union[float, str]]:
     """Re-escribir utilizando comprensión de listas."""
-    pass # Completar
+    return [i for i in lista if not str(i).isdigit()]+[i for i in lista if str(i).isdigit()]
 
 
 # NO MODIFICAR - INICIO
@@ -44,7 +44,14 @@ def numeros_al_final_sorted(lista: List[Union[float, str]]) -> List[Union[float,
     """Re-escribir utilizando la función sorted con una custom key.
     Referencia: https://docs.python.org/3/library/functions.html#sorted
     """
-    pass # Completar
+    listaordenada = sorted([str(i) for i in lista], key=str.isdigit)
+    listaordenada2=[]
+    for i in listaordenada:
+      if(i.isdigit()):
+        listaordenada2.append(int(i))
+      else:
+        listaordenada2.append(i)
+    return listaordenada2
 
 
 # NO MODIFICAR - INICIO
