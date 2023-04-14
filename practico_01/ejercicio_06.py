@@ -47,7 +47,7 @@ def numeros_al_final_sorted(lista: List[Union[float, str]]) -> List[Union[float,
     listaordenada = sorted([str(i) for i in lista], key=str.isdigit)
     listaordenada2=[]
     for i in listaordenada:
-      if(i.isdigit()):
+      if i.isdigit():
         listaordenada2.append(int(i))
       else:
         listaordenada2.append(i)
