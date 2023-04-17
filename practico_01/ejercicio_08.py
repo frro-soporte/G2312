@@ -9,8 +9,9 @@ def superposicion_basico(lista_1: Iterable[Any], lista_2: Iterable[Any]) -> bool
     Restricción: Utilizar bucles anidados.
     """
     for elem in lista_1:
-      for elem2 in lista_2:
-        return elem==elem2
+        for elem2 in lista_2:
+            if elem == elem2:
+                return True
     return False
 
 
@@ -60,8 +61,11 @@ def superposicion_set(lista_1: Iterable[Any], lista_2: Iterable[Any]) -> bool:
     """Re-Escribir utilizando conjuntos (sets).
     Referencia: https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset
     """
-    pass # Completar
-
+    con1 = set(lista_1)
+    con2 = set(lista_2)
+    if con1.isdisjoint(con2):
+        return False
+    return True
 
 # NO MODIFICAR - INICIO
 test_list = [1, "hello", 35.20]
