@@ -1,20 +1,3 @@
-"""Higher Order Functions, Decoradores, Memoized
-
-Python permite funciones de orden superior, es decir, funciones que toman
-otras funciones como parámetros. Esto posibilita una serie de patrones que
-en otros lenguajes son difíciles de implementar y hace sencilla la
-implementación de patrones como el decorador.
-
-
-Caso de uso 1: Medir el tiempo de las funciones
-
-En Python existe la función perf_counter del módulo time de la biblioteca
-estandar que permite medir el tiempo con cierta precisión entre invocaciones.
-
-Para poder utilizar un ejemplo real, se utilizará una función que calcula
-y cuenta las permutaciones (una operación costosa computacionalmente).
-"""
-
 from itertools import permutations
 from time import perf_counter
 from typing import Callable, Sequence, Tuple
@@ -55,11 +38,17 @@ def medir_tiempo(func: Callable[[], int]) -> Tuple[int, float]:
     Restricción: La función no debe tomar parámetros y por lo tanto se
     recomienda usar partial.
     """
-    pass # Completar
+    def wrapper() -> Tuple[int, float]:
+        start = perf_counter()
+        result = func()
+        elapsed = perf_counter() - start
+        return result, elapsed
+
+    return wrapper
 
 
 # NO MODIFICAR - INICIO
-result, elapsed = medir_tiempo(partial(calcular_posibilidades, lista, limite))
+result, elapsed = medir_tiempo(partial(calcular_posibilidades, lista, limite))()
 print(f"Tiempo: {elapsed:2.2f} segundos - Usando Partial")
 assert result == 28671512
 # NO MODIFICAR - FIN
@@ -73,7 +62,13 @@ def medir_tiempo(func: Callable[[Sequence[int], int], int]) -> Callable[[Sequenc
     partial. En este caso se debe devolver una función que devuelva la tupla y
     tome una cantidad arbitraria de parámetros.
     """
-    pass # Completar
+    def wrapper(*args, **kwargs) -> Tuple[int, float]:
+        start = perf_counter()
+        result = func(*args, **kwargs)
+        elapsed = perf_counter() - start
+        return result, elapsed
+
+    return wrapper
 
 
 # NO MODIFICAR - INICIO
@@ -127,7 +122,16 @@ def memoized(func):
     tiempo para la función calcular posibilidades. Prestar atención a los tiempo
     de ejecución
     """
-    pass # Completar
+    cache = {}
+
+    def wrapper(*args, **kwargs):
+        key = f"{func.__name__}:{args}:{kwargs}"
+        if key not in cache:
+            cache[key] = func(*args, **kwargs)
+        return cache[key]
+
+    return wrapper
+
 
 
 @medir_tiempo
@@ -171,7 +175,12 @@ sucesivas.
 @memoized
 def calcular_posibilidades_recursiva(lista: Sequence[int], limite: int) -> int:
     """Re-Escribir de manera recursiva"""
-    pass # Completar
+    if limite == 0:
+        return 1
+    count = 0
+    for i in range(len(lista)):
+        count += calcular_posibilidades_recursiva(lista[:i] + lista[i + 1:], limite=(limite - 1))
+    return count
 
 
 # NO MODIFICAR - INICIO
