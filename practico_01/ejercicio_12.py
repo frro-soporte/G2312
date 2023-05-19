@@ -1,6 +1,5 @@
 """Tuple, Enumerate, Zip, Args.
 
-
 Contexto: Se tiene un programa que lee diferentes listas de una tabla en una
 base de datos y se quieren combinar estas listas para que luego puedan crearse
 los objetos de la capa de negocio.
@@ -8,6 +7,7 @@ los objetos de la capa de negocio.
 
 
 from typing import Any, List, Tuple
+
 
 nombre_articulos = ["ventana", "lámpara", "shampoo"]
 precio_articulos = [100.48, 16.42, 5.20]
@@ -19,7 +19,10 @@ def combinar_basico(nombres: List[str], precios: List[float]) -> Tuple[Any]:
 
     Restricción: Resolver utilizando un bucle for.
     """
-    pass # Completar
+    tuplas = []
+    for i in range(len(nombres)):
+        tuplas.append((nombres[i], precios[i]))
+    return tuple(tuplas)
 
 
 # NO MODIFICAR - INICIO
@@ -43,7 +46,10 @@ def combinar_enumerate(nombres: List[str], precios: List[float], ids: List[int])
     """Re-Escribir utilizando enumerate y agregando un nuevo componente.
     Referencia: https://docs.python.org/3/library/functions.html#enumerate
     """
-    pass # Completar
+    tuplas = []
+    for i, nombre in enumerate(nombres):
+        tuplas.append((nombre, precios[i], ids[i]))
+    return tuple(tuplas)
 
 
 # NO MODIFICAR - INICIO
@@ -67,7 +73,10 @@ def combinar_zip(nombres: List[str], precios: List[float], ids: List[int]) -> Tu
     """Re-Escribir utilizando zip.
     Referencia: https://docs.python.org/3/library/functions.html#zip
     """
-    pass # Completar
+    tuplas = []
+    for nombre, precio, id_articulo in zip(nombres, precios, ids):
+        tuplas.append((nombre, precio, id_articulo))
+    return tuple(tuplas)
 
 
 # NO MODIFICAR - INICIO
@@ -93,7 +102,10 @@ def combinar_zip_args(*args) -> Tuple[Any]:
     """Re-Escribir utilizando zip y una cantidad arbitraria de componentes.
     Referencia: https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists
     """
-    pass # Completar
+    tuplas = []
+    for items in zip(*args):
+        tuplas.append(tuple(items))
+    return tuple(tuplas)
 
 
 # NO MODIFICAR - INICIO
@@ -113,3 +125,4 @@ componentes = [
 
 assert combinar_zip_args(*componentes) == respuesta
 # NO MODIFICAR - FIN
+
