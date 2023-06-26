@@ -66,7 +66,7 @@ def numeros_al_final_filter(lista: List[Union[float, str]]) -> List[Union[float,
     """CHALLENGE OPCIONAL - Re-escribir utilizando la función filter.
     Referencia: https://docs.python.org/3/library/functions.html#filter
     """
-    pass # Completar
+    return list(filter(lambda x: not str(x).isdigit(), lista)) + list(filter(lambda x: str(x).isdigit(), lista))
 
 
 # NO MODIFICAR - INICIO
@@ -80,7 +80,12 @@ if __name__ == "__main__":
 
 def numeros_al_final_recursivo(lista: List[Union[float, str]]) -> List[Union[float, str]]:
     """CHALLENGE OPCIONAL - Re-escribir de forma recursiva."""
-    pass # Completar
+    i = 0
+    for elem in lista:
+        if not str(elem).isdigit():
+            return [lista.pop(i)] + numeros_al_final_recursivo(lista)
+        i += 1
+    return lista
 
 
 # NO MODIFICAR - INICIO

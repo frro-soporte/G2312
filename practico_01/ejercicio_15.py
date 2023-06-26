@@ -133,7 +133,6 @@ def memoized(func):
     return wrapper
 
 
-
 @medir_tiempo
 @memoized
 def calcular_posibilidades(lista: Sequence[int], limite: int) -> int:
@@ -175,12 +174,14 @@ sucesivas.
 @memoized
 def calcular_posibilidades_recursiva(lista: Sequence[int], limite: int) -> int:
     """Re-Escribir de manera recursiva"""
-    if limite == 0:
-        return 1
+    if limite < 1:
+        return 0
+    if limite > len(lista) + 1:
+        return calcular_posibilidades_recursiva(lista, len(lista) + 1)[0]
     count = 0
-    for i in range(len(lista)):
-        count += calcular_posibilidades_recursiva(lista[:i] + lista[i + 1:], limite=(limite - 1))
-    return count
+    for _ in permutations(lista, limite - 1):
+        count += 1
+    return count + calcular_posibilidades_recursiva(lista, limite - 1)[0]
 
 
 # NO MODIFICAR - INICIO
