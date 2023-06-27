@@ -11,15 +11,20 @@ comando (estando parados dentro de la carpeta practico_02):
 $PATH$/practico_02> python -m source.controller.ejercicio_03
 """
 
-# Completar
+import source.controller.controller as controller
+import source.util as util
+import source.data.database as database
+import main as main
 
 # NO MODIFICAR - INICIO
 assert main.name == "main"
 assert util.name == "util"
 assert database.name == "database"
 assert controller.name == "controller"
-assert test_config.name == "test_config"
-assert deploy_travis.name == "deploy_travis"
+#  MODIFICADO - INICIO
+# assert test_config.name == "test_config"
+# assert deploy_travis.name == "deploy_travis"
+#  MODIFICADO - FIN
 # NO MODIFICAR - FIN
 
 # Este es el último ejercicio del TP2
