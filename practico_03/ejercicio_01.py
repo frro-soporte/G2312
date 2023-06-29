@@ -1,6 +1,6 @@
 """Constructor, Variables de instancia y métodos de instacia"""
 
-from typing import Optional
+from typing import Union
 
 
 class Rectangulo:
@@ -8,7 +8,13 @@ class Rectangulo:
     Implementar la clase Rectangulo que contiene una base y una altura, y el
     método area.
     """
-    # Completar
+
+    def __init__(self, base: Union[int, float, None] = None, altura: Union[int, float, None] = None):
+        self.base = base
+        self.altura = altura
+
+    def area(self) -> Union[int, float]:
+        return 0 if self.base is None or self.altura is None else self.base * self.altura
 
 
 # NO MODIFICAR - INICIO

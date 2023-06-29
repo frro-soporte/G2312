@@ -16,7 +16,16 @@ class Article:
 
     # NO MODIFICAR - FIN
 
-    # Completar
+    def __repr__(self) -> str:
+        return f"Article('{self.name}')"
+
+    def __str__(self) -> str:
+        return self.name
+
+    def __eq__(self, other: Article) -> bool:
+        if type(other) is not Article:
+            return NotImplemented
+        return self.name == other.name
 
 
 # NO MODIFICAR - INICIO
@@ -49,7 +58,51 @@ class ShoppingCart:
 
     # NO MODIFICAR - FIN
 
-    # Completar
+    def __repr__(self) -> str:
+        # Opción 1:
+        return "ShoppingCart([" + ", ".join(repr(article) for article in self.articles) + "])"
+
+        # Opción 2:
+        # resultado = "ShoppingCart(["
+        # for i in range(len(self.articles)):
+        #     if i > 0:
+        #         resultado += ", "
+        #     resultado += repr(self.articles[i])
+        # resultado += "])"
+        # return resultado
+
+        # Opción 3:
+        # return "ShoppingCart(" + str([eval(repr(article)) for article in self.articles]) + ")"
+
+    def __str__(self) -> str:
+        # Opción 1:
+        if len(self.articles) > 0:
+            return "['" + "', '".join(str(article) for article in self.articles) + "']"
+        return "[]"
+
+        # Opción 2:
+        # resultado = "["
+        # for i in range(len(self.articles)):
+        #     if i > 0:
+        #         resultado += ", "
+        #     resultado += "'" + str(self.articles[i]) + "'"
+        # resultado += "]"
+        # return resultado
+
+        # Opción 3:
+        # return str([str(article) for article in self.articles])
+
+    def __eq__(self, other: ShoppingCart) -> bool:
+        if type(other) is not ShoppingCart:
+            return NotImplemented
+        return self.articles.sort(key=str) == other.articles.sort(key=str)
+
+    def __add__(self, other: ShoppingCart) -> ShoppingCart:
+        if type(other) is not ShoppingCart:
+            return NotImplemented
+        for article in other.articles:
+            self.add(article)
+        return self
 
 
 # NO MODIFICAR - INICIO
