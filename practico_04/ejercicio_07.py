@@ -1,7 +1,9 @@
 """Base de Datos SQL - Uso de múltiples tablas"""
 
 import datetime
+import sqlite3
 
+from practico_04.ejercicio_04 import buscar_persona
 from practico_04.ejercicio_02 import agregar_persona
 from practico_04.ejercicio_06 import reset_tabla
 
@@ -20,7 +22,34 @@ def agregar_peso(id_persona, fecha, peso):
     - ID del peso registrado.
     - False en caso de no cumplir con alguna validacion."""
 
-    pass # Completar
+    persona = buscar_persona(id_persona)
+    if persona is False:
+        return False
+    con = sqlite3.connect("practico4.db")
+    cur = con.cursor()
+    try:
+        cur.execute(
+            f"""SELECT
+                fecha,
+                peso
+            FROM persona_peso as per_peso
+            WHERE per_peso.id_persona = ?
+                AND per_peso.fecha > ?""",
+            (id_persona, fecha)
+        )
+        persona_peso_posterior = cur.fetchone()
+        if persona_peso_posterior is None:
+            cur.execute(
+                """INSERT INTO persona_peso (id_persona, fecha, peso) VALUES (?, ?, ?)""",
+                (id_persona, fecha, peso)
+            )
+            con.commit()
+            return cur.lastrowid
+        else:
+            return False
+    finally:
+        cur.close()
+        con.close()
 
 
 # NO MODIFICAR - INICIO

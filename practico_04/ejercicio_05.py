@@ -1,6 +1,7 @@
 """Base de Datos SQL - Modificación"""
 
 import datetime
+import sqlite3
 
 from practico_04.ejercicio_01 import reset_tabla
 from practico_04.ejercicio_02 import agregar_persona
@@ -11,7 +12,24 @@ def actualizar_persona(id_persona, nombre, nacimiento, dni, altura):
     """Implementar la funcion actualizar_persona, que actualiza un registro de
     una persona basado en su id. Devuelve un booleano en base a si encontro el
     registro y lo actualizo o no."""
-    pass # Completar
+    con = sqlite3.connect("practico4.db")
+    cur = con.cursor()
+    try:
+        cur.execute(
+            """UPDATE persona SET
+            nombre = ?,
+            fecha_nacimiento = ?,
+            dni = ?,
+            altura = ?
+            WHERE id_persona = ?""",
+            (nombre, nacimiento, dni, altura, id_persona)
+        )
+        con.commit()
+        return cur.rowcount == 1
+    finally:
+        cur.close()
+        con.close()
+
 
 # NO MODIFICAR - INICIO
 @reset_tabla
