@@ -101,4 +101,4 @@ ENV/
 .mypy_cache/
 
 .idea
-practico_04/*.db
+practico*/**/*.db
