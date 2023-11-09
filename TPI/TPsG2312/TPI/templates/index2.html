@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-center mt-5 mb-5">{{product_name}}</h1>
+        <h2 class="text-center mt-5 mb-5">Precio Promedio de Venta:{{acumulado}}</h2>
+    </div>
+
+    <div class="container">
+                <div class="row">
+                    <div class="card col-md-6">
+                        <div class="card-header">
+                            <h4 class="text-center">Producto de menor costo:</h4>
+                            <h6 class="text-center">{{minItem.Titulo}}</h6>
+                        </div>
+                        <div class="card-body">
+                            <p id="nomProducto">Precio:{{minItem.Precio}}</p>
+                            <a href="{{minItem.URL}}" id="urlProducto" target="_blank">Link del producto</a>
+                            <img src="{{minItem.Img}}"  width="300" height="300">
+                        </div> 
+                    </div>
+                    <div class="card col-md-6">
+                        <div class="card-header">
+                            <h4 class="text-center">Producto de mayor costo:</h4>
+                            <h6 class="text-center">{{maxItem.Titulo}}</h6>
+                        </div>
+                        <div class="card-body">
+                            <p id="nomProducto">Precio:{{maxItem.Precio}}</p>
+                            <a href="{{maxItem.URL}}" id="urlProducto" target="_blank">Link del producto</a>
+                            <img src="{{maxItem.Img}}" width="300" height="300">
+                        </div> 
+                    </div>
+                </div>
+        </div>
+    <div class="container">
+        <div class="row">
+                    <div class="card col-md-6">
+    <img src="/plot.png/{{product_name}}" alt="my plot" class="center">
+                    </div>
+                    <div class="card col-md-6">
+
+                    </div>
+                </div>
+    </div>
+
+</body>
+</html>
