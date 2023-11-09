@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar socio</title>
+</head>
+<body>
+<h1>Agregar socio</h1>
+<form method="POST">
+  {{socio_agregar.csrf_token}}
+  <!-- Accedo a cada uno de los valores del formulario -->
+  <p>
+    <!-- Con esto muestro la etiqueta asociada al campo 'Nombre' -->
+    {{socio_agregar.nombre.label}} <br/>
+    <!-- Indico el ancho del inputText asociado a este valor (size = 30) -->
+    {{socio_agregar.nombre(size=30)}}
+  </p>
+  <p>
+    {{socio_agregar.apellido.label}} <br/>
+    {{socio_agregar.apellido(size=30)}}
+  </p>
+  <p>
+    {{socio_agregar.dni.label}} <br/>
+    {{socio_agregar.dni(size=30)}}
+  </p>
+  <p>
+    {{socio_agregar.guardar()}}
+    <a href="{{url_for('get_all_socios')}}">Cancelar</a>
+  </p>
+</form>
+</body>
+</html>

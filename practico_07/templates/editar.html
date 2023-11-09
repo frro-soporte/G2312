@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Socio a editar</title>
+</head>
+<body>
+<h1>Edición de socio</h1>
+<form method="POST">
+  {{socio_editar.csrf_token}}
+  <p>
+    {{socio_editar.nombre.label}} <br/>
+    {{socio_editar.nombre(size=30)}}
+  </p>
+  <p>
+    {{socio_editar.apellido.label}} <br/>
+    {{socio_editar.apellido(size=30)}}
+  </p>
+  <p>
+    {{socio_editar.dni.label}} <br/>
+    {{socio_editar.dni(size=30)}}
+  </p>
+  <p>
+    {{socio_editar.guardar()}}
+    <a href="{{url_for('get_all_socios')}}">Cancelar</a>
+  </p>
+</form>
+</body>
+</html>

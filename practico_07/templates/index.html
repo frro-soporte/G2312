@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de socios</title>
+</head>
+<body>
+<h1>Listado de socios</h1>
+
+<div>
+    <!-- Esta ruta podría hacerse con url_for() -->
+    <a href="{{url_for('add_socio')}}">Agregar socio</a>
+</div>
+
+<div>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        <!--Este tablerow debe de repetirse tantas veces como elementos tengamos. Entonces usamos un ciclo for para iterar.
+        Esto se lee 'para cada socio en sociosParam'. Recordemos que sociosParam es la variable que se comparte
+        en el método render_template()-->
+            {% for socio in sociosParam %}
+                <tr>
+                    <td>{{socio.id}}</td>
+                    <td>{{socio.dni}}</td>
+                    <td>{{socio.nombre}}</td>
+                    <td>{{socio.apellido}}</td>
+                    <td><a href="edicion/{{socio.id}}">Modificación</a></td>
+                    <td><a href="eliminar/{{socio.id}}">Baja</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
